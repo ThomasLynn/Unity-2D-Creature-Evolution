@@ -7,17 +7,26 @@ public class Spawner : MonoBehaviour {
 
     public GameObject myPrefab;
     public Text scoreText;
-    public int CREATURE_COUNT = 150;
+    public int CREATURE_COUNT;
     
     private List<CreatureContainer> containerList;
     private int randomToDeploy;
 
     // Use this for initialization
-    void Start () {
+    void Start() {
         containerList = new List<CreatureContainer>();
         randomToDeploy = CREATURE_COUNT;
         //Time.timeScale = 2;
         Application.runInBackground = true;
+
+        NNetwork net = new NNetwork(new List<int>(new int[] { 4, 15, 15, 4 }), 5);
+        double[] inputs = new double[] { 0, 0, 0, 0 };
+        List<double> outputs = net.get_outputs(inputs);
+        Debug.Log("outputs");
+        foreach (double output in outputs)
+        {
+            Debug.Log(output);
+        }
     }
 
     // Update is called once per frame

@@ -17,12 +17,12 @@ public class CreatureContainer{
         {
             network = new NNetwork(new List<int>(new int[] { 4, 15, 15, 4 }), 5);
             creature.transform.Find("CreatureControl").SendMessage("setNetwork", network);
-            Debug.Log("making random network");
+            //Debug.Log("making random network");
         }
         else
         {
             float factor = Mathf.Max(1, Mathf.Min(1000, 500 / inputNetwork.networkValue));
-            Debug.Log("making network with variance factor "+factor);
+            //Debug.Log("making network with variance factor "+factor);
             network = new NNetwork(inputNetwork,factor);//1000);
             creature.transform.Find("CreatureControl").SendMessage("setNetwork", network);
         }

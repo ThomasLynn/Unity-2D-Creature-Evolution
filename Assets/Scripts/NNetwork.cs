@@ -59,7 +59,8 @@ public class NNetwork{
             {
                 for (int j = 0; j < recurrentNeurons; j++)
                 {
-                    currentLayer.Add(new Neuron(0));
+                    currentLayer.Add(new Neuron(previousLayer));
+                    //currentLayer.Add(new Neuron(0));
                 }
             }
             else
