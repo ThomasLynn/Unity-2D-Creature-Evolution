@@ -18,15 +18,6 @@ public class Spawner : MonoBehaviour {
         randomToDeploy = CREATURE_COUNT;
         //Time.timeScale = 2;
         Application.runInBackground = true;
-
-        NNetwork net = new NNetwork(new List<int>(new int[] { 4, 15, 15, 4 }), 5);
-        double[] inputs = new double[] { 0, 0, 0, 0 };
-        List<double> outputs = net.get_outputs(inputs);
-        Debug.Log("outputs");
-        foreach (double output in outputs)
-        {
-            Debug.Log(output);
-        }
     }
 
     // Update is called once per frame

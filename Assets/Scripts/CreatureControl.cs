@@ -12,7 +12,8 @@ public class CreatureControl : MonoBehaviour {
     // Use this for initialization
     void Start() {
         limbNames = new List<string>(new string[] { "Leg Front Upper", "Leg Front Lower", "Leg Front Foot"
-            , "Leg Back Upper", "Leg Back Lower", "Leg Back Foot", "Neck Lower", "Tail Upper"});
+            , "Leg Back Upper", "Leg Back Lower", "Leg Back Foot", "Neck Lower"
+            , "Tail Upper", "Tail Lower"});
         startingPosition = getXPosition();
     }
 
@@ -70,5 +71,18 @@ public class CreatureControl : MonoBehaviour {
     {
         Rigidbody2D rigitBody = transform.parent.Find(name).GetComponent<Rigidbody2D>();
         return rigitBody.position.y;
+        //HingeJoint2D rigitBody = transform.parent.Find(name).GetComponent<HingeJoint2D>();
+        //return rigitBody.jointAngle;
+        /*Rigidbody2D RBody = transform.parent.Find(name).GetComponent<Rigidbody2D>();
+        //Debug.DrawRay(new Vector2(RBody.position.x, RBody.position.y + 1), -Vector2.up);
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(RBody.position.x,RBody.position.y+1), -Vector2.up);
+        if (hit.collider != null)
+        {
+            float distance = Mathf.Abs(hit.point.y - transform.position.y);
+            //Debug.Log(distance);
+            return Mathf.Min(10,distance);
+        }
+        //Debug.Log("sayth what?");
+        return 10;*/
     }
 }

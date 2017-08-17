@@ -15,13 +15,13 @@ public class CreatureContainer{
         creature = inputCreature;
         if (inputNetwork == null)
         {
-            network = new NNetwork(new List<int>(new int[] { 8, 15, 15, 8 }), 5);
+            network = new NNetwork(new List<int>(new int[] { 9, 15, 15, 9 }), 5);
             creature.transform.Find("CreatureControl").SendMessage("setNetwork", network);
             //Debug.Log("making random network");
         }
         else
         {
-            float factor = Mathf.Max(1, Mathf.Min(1000, 500 / inputNetwork.networkValue));
+            float factor = Mathf.Max(1, Mathf.Min(1000, 1000 / inputNetwork.networkValue));
             //Debug.Log("making network with variance factor "+factor);
             network = new NNetwork(inputNetwork,factor);//1000);
             creature.transform.Find("CreatureControl").SendMessage("setNetwork", network);
