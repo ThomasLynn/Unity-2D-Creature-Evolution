@@ -11,7 +11,8 @@ public class CreatureControl : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        limbNames = new List<string>(new string[] { "Leg Front Upper", "Leg Front Lower" , "Leg Back Upper", "Leg Back Lower"});
+        limbNames = new List<string>(new string[] { "Leg Front Upper", "Leg Front Lower", "Leg Front Foot"
+            , "Leg Back Upper", "Leg Back Lower", "Leg Back Foot", "Neck Lower", "Tail Upper"});
         startingPosition = getXPosition();
     }
 
@@ -23,16 +24,18 @@ public class CreatureControl : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (transform.parent.Find("Body").GetComponent<Rigidbody2D>().rotation > 0)
-        {
-            controlNetwork.networkValue = Mathf.Max(0.01f, getXPosition() - startingPosition);
-        }
-        else
-        {
-            controlNetwork.networkValue = 0.01f;
-        }
+
         if (controlNetwork != null)
         {
+            if (transform.parent.Find("Body").GetComponent<Rigidbody2D>().rotation > 0)
+            {
+                controlNetwork.networkValue = Mathf.Max(0.01f, getXPosition() - startingPosition);
+            }
+            else
+            {
+                controlNetwork.networkValue = 0.01f;
+            }
+        
             List<double> input = new List<double>();
             foreach (string name in limbNames)
             {

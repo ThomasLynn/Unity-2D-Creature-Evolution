@@ -15,7 +15,7 @@ public class CreatureContainer{
         creature = inputCreature;
         if (inputNetwork == null)
         {
-            network = new NNetwork(new List<int>(new int[] { 4, 15, 15, 4 }), 5);
+            network = new NNetwork(new List<int>(new int[] { 8, 15, 15, 8 }), 5);
             creature.transform.Find("CreatureControl").SendMessage("setNetwork", network);
             //Debug.Log("making random network");
         }
@@ -34,7 +34,7 @@ public class CreatureContainer{
     public bool isDead()
     {
         age += Time.deltaTime;
-        if (creature.transform.Find("Body").transform.position.x <= personalBest + Mathf.Max(0, age/2 - 2))
+        if (creature.transform.Find("Body").transform.position.x <= personalBest + Mathf.Max(0, age/5))
         {
             timer -= Time.deltaTime;
         }
