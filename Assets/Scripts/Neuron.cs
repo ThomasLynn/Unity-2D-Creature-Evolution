@@ -19,7 +19,10 @@ public class Neuron{
         connections = new List<Connection>();
         for (int i=0;i<neuronList.Count;i++)
         {
-            connections.Add(new Connection(neuronList[i], connectionList[i].weight+(Random.value-0.5f)*randomness*randomMultipltier));
+            // need to normalize the newWeight against an average... at some point
+            double newWeight = connectionList[i].weight + (Random.value - 0.5f) * randomness * randomMultipltier * Mathf.Exp(connectionList[i].variance);
+            float newVariance = connectionList[i].variance + (Random.value - 0.5f);
+            connections.Add(new Connection(neuronList[i], newWeight, newVariance));
         }
 
     }
@@ -32,7 +35,7 @@ public class Neuron{
         connections = new List<Connection>();
         foreach (Neuron neuron in neuronList)
         {
-            connections.Add(new Connection(neuron, Random.value*2-1));
+            connections.Add(new Connection(neuron, Random.value*2-1, 0));
         }
         
     }
@@ -85,7 +88,8 @@ public class Connection
 {
     private Neuron neuron;
     public double weight;
-    public Connection(Neuron connectedNeuron, double startingWeight)
+    public float variance;
+    public Connection(Neuron connectedNeuron, double startingWeight, float variance)
     {
         neuron = connectedNeuron;
         weight = startingWeight;
